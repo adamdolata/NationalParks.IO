@@ -1,0 +1,22 @@
+﻿@model CombinedParkWeather
+@{
+    var parkWeather = Model.GetParkWeather();
+    ParkDataModel park = (ParkDataModel)(parkWeather["park"]);
+    IList<DailyWeatherModel> weather = (List<DailyWeatherModel>)(parkWeather["weather"]);
+    ViewData["Title"] = "ParkDetails";
+}
+
+<h2>ParkDetails</h2>
+
+<h3>@park.ParkName</h3>
+<p>@park.State</p>
+<p>@park.Description</p>
+<p><img src="~/img/parks/@(park.ParkCode).jpg" /></p>
+@foreach (var day in weather)
+{
+    <h4>@day.Day</h4>
+    <p>Five Day Forecast: @day.FiveDayForecast</p>
+    <p>Forecast: @day.Forecast</p>
+    <p>High: @day.HighTemp</p>
+    <p>Low: @day.LowTemp</p>
+}
