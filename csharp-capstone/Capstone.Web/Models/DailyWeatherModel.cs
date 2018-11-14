@@ -11,7 +11,6 @@ namespace Capstone.Web.Models
         public int Day { get; set; }
         public int LowTemp { get; set; }
         public int HighTemp { get; set; }
-        public int FiveDayForecast { get; set; }
         public string Forecast { get; set; }
     }
 }

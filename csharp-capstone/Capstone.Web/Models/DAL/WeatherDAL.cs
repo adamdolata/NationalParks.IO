@@ -50,9 +50,8 @@ namespace Capstone.Web.Models.DAL
         {
             return new DailyWeatherModel
             {
+                Day = Convert.ToInt32(reader["fiveDayForecastValue"]),
                 ParkCode = Convert.ToString(reader["parkCode"]),
-                Day = Convert.ToInt32(reader["day"]),
-                FiveDayForecast = Convert.ToInt32(reader["fiveDayForecastValue"]),
                 Forecast = Convert.ToString(reader["forecast"]),
                 HighTemp = Convert.ToInt32(reader["high"]),
                 LowTemp = Convert.ToInt32(reader["low"])

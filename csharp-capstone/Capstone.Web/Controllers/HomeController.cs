@@ -14,13 +14,9 @@ namespace Capstone.Web.Controllers
         private IParkDAL parkDAL;
         private IWeatherDAL weatherDAL;
 
-        public HomeController(IParkDAL parkDAL)
+        public HomeController(IParkDAL parkDAL, IWeatherDAL weatherDAL)
         {
             this.parkDAL = parkDAL;
-        }
-
-        public HomeController(IWeatherDAL weatherDAL)
-        {
             this.weatherDAL = weatherDAL;
         }
 
