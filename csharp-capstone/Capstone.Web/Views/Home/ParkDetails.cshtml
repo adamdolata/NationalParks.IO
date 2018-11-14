@@ -3,6 +3,7 @@
     var parkWeather = Model.GetParkWeather();
     ParkDataModel park = (ParkDataModel)(parkWeather["park"]);
     IList<DailyWeatherModel> weather = (List<DailyWeatherModel>)(parkWeather["weather"]);
+    string tempUnits = (string)(parkWeather["tempUnits"]);
     ViewData["Title"] = "ParkDetails";
 }
 
@@ -34,21 +35,22 @@
         <div class="well col-sm-2">
             <h4 style="text-align: center;">@day.Day</h4>
             <p><img src="~/img/weather/@(forecastImg).png" style="width: 100%" alt="Forecast: @day.Forecast" /></p>
-            <p>High: @day.HighTemp, Low: @day.LowTemp</p>
+            <p>High: @(Model.ConvertTemp(day.HighTemp).ToString("#,##"))&#176; @tempUnits, Low: @(Model.ConvertTemp(day.LowTemp).ToString("#,##"))&#176; @tempUnits</p>
             <p class="warning">@day.Message</p>
         </div>
     }
 </div>
 
-<form asp-controller="Home" asp-action="SetTempUnits">
-    <p>Current Units: @weather.First().TempUnits</p>
+<form asp-controller="Home" asp-action="SetTempUnits" method="get">
+    <p>Current Units: @tempUnits</p>
     @{ 
         string OppositeUnits = "C";
-        if (weather.First().TempUnits == "C")
+        if (tempUnits == "C")
         {
             OppositeUnits = "F";
         }
     }
-    @Html.Hidden(park.ParkCode)
-    <input type="submit" class="" asp-route-tempUnits="@OppositeUnits" value="Toggle Units" />
+    <input type="hidden" name="parkCode" value="@park.ParkCode" />
+    <input type="hidden" name="tempUnits" value="@OppositeUnits" />
+    <input type="submit" name="submit" value="Toggle Units" />
 </form>

@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Capstone.Web.Models;
 using Capstone.Web.Models.DAL;
+using Capstone.Web.Extensions;
 
 namespace Capstone.Web.Controllers
 {
@@ -20,18 +21,34 @@ namespace Capstone.Web.Controllers
             this.weatherDAL = weatherDAL;
         }
 
+        private void SaveTempUnits(string tempUnits)
+        {
+            HttpContext.Session.Set<string>("TempUnits", tempUnits);
+        }
+
+        private string GetTempUnits()
+        {
+            if (HttpContext.Session.Get<string>("TempUnits") == null)
+            {
+                HttpContext.Session.Set<string>("TempUnits", "F");
+            }
+            return HttpContext.Session.Get<string>("TempUnits");
+        }
+
+        [HttpGet]
         public IActionResult Index()
         {
             IList<ParkDataModel> parks = parkDAL.GetAllParks();
             return View(parks);
         }
 
+        [HttpGet]
         public IActionResult ParkDetails(string parkCode)
         {
             var park = parkDAL.GetParkFromCode(parkCode);
             var weather = weatherDAL.GetWeatherFromParkCode(parkCode);
-
-            var parkWeather = (new CombinedParkWeather(park, weather));
+            var tempUnits = GetTempUnits();
+            var parkWeather = (new CombinedParkWeather(park, weather, tempUnits));
 
             return View(parkWeather);
         }
@@ -39,8 +56,10 @@ namespace Capstone.Web.Controllers
         [HttpGet]
         public IActionResult SetTempUnits(string tempUnits, string parkCode)
         {
-            weatherDAL.TempUnits = tempUnits;
-            return RedirectToAction("ParkDetails", new { parkCode });
+            SaveTempUnits(tempUnits);
+
+            //weatherDAL.TempUnits = tempUnits;
+            return RedirectToAction("ParkDetails", new { parkCode = parkCode });
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]

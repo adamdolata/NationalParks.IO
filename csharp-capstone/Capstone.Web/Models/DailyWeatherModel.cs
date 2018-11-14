@@ -19,22 +19,6 @@ namespace Capstone.Web.Models
                 return DetermineMessage();
             }
         }
-        public string TempUnits { get; set; }
-
-        public DailyWeatherModel()
-        {
-            this.HighTemp = ConvertTemp(this.HighTemp);
-            this.LowTemp = ConvertTemp(this.LowTemp);
-        }
-
-        private int ConvertTemp(int temp)
-        {
-            if(TempUnits == "C")
-            {
-                temp = (temp - 32) / (5 / 9);
-            }
-            return temp;
-        }
 
         private string DetermineMessage()
         {
