@@ -31,9 +31,16 @@ namespace Capstone.Web.Controllers
             var park = parkDAL.GetParkFromCode(parkCode);
             var weather = weatherDAL.GetWeatherFromParkCode(parkCode);
 
-            var parkWeather = (new CombinedParkWeather(park, weather)).GetParkWeather();
+            var parkWeather = (new CombinedParkWeather(park, weather));
 
             return View(parkWeather);
+        }
+
+        [HttpGet]
+        public IActionResult SetTempUnits(string tempUnits, string parkCode)
+        {
+            weatherDAL.TempUnits = tempUnits;
+            return RedirectToAction("ParkDetails", new { parkCode });
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]

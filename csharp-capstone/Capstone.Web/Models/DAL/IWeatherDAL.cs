@@ -8,5 +8,6 @@ namespace Capstone.Web.Models.DAL
     public interface IWeatherDAL
     {
         IList<DailyWeatherModel> GetWeatherFromParkCode(string parkCode);
+        string TempUnits { get; set; }
     }
 }

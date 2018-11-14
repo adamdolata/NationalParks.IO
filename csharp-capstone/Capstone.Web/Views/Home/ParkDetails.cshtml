@@ -6,16 +6,49 @@
     ViewData["Title"] = "ParkDetails";
 }
 
-<h2>ParkDetails</h2>
-
-<h3>@park.ParkName</h3>
-<p>@park.State</p>
-<p>@park.Description</p>
+<h2>@park.ParkName</h2>
 <p><img src="~/img/parks/@(park.ParkCode).jpg" /></p>
-@foreach (var day in weather)
-{
-    <h4>@day.Day</h4>
-    <p>Forecast: @day.Forecast</p>
-    <p>High: @day.HighTemp</p>
-    <p>Low: @day.LowTemp</p>
-}
+<p>Founded in @park.YearFounded and located in @park.State, at an elevation of @park.Elevation.ToString("#,#") ft.</p>
+<p>Features @park.CampsiteNumber campsites and @park.TrailLength miles of trails. Visted by @park.AnnualVisitors.ToString("#,#") visitors every year.</p>
+<p>Entry fee: @park.EntryFee.ToString("C")</p>
+<p>@park.Description</p>
+<blockquote>
+    <p>@park.Quote</p>
+    <footer>@park.QuoteSource</footer>
+</blockquote>
+
+<h3>Five Day Forcast</h3>
+<div class="row">
+    @foreach (var day in weather)
+    {
+        string forecastImg = String.Empty;
+
+        if (day.Forecast == "partly cloudy")
+        {
+            forecastImg = "partlyCloudy";
+        }
+        else
+        {
+            forecastImg = day.Forecast;
+        }
+        <div class="well col-sm-2">
+            <h4 style="text-align: center;">@day.Day</h4>
+            <p><img src="~/img/weather/@(forecastImg).png" style="width: 100%" alt="Forecast: @day.Forecast" /></p>
+            <p>High: @day.HighTemp, Low: @day.LowTemp</p>
+            <p class="warning">@day.Message</p>
+        </div>
+    }
+</div>
+
+<form asp-controller="Home" asp-action="SetTempUnits">
+    <p>Current Units: @weather.First().TempUnits</p>
+    @{ 
+        string OppositeUnits = "C";
+        if (weather.First().TempUnits == "C")
+        {
+            OppositeUnits = "F";
+        }
+    }
+    @Html.Hidden(park.ParkCode)
+    <input type="submit" class="" asp-route-tempUnits="@OppositeUnits" value="Toggle Units" />
+</form>

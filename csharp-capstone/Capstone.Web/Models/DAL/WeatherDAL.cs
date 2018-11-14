@@ -9,6 +9,7 @@ namespace Capstone.Web.Models.DAL
     public class WeatherDAL : IWeatherDAL
     {
         private readonly string connectionString;
+        public string TempUnits { get; set; }
 
         public WeatherDAL(string connectionString)
         {
@@ -54,7 +55,8 @@ namespace Capstone.Web.Models.DAL
                 ParkCode = Convert.ToString(reader["parkCode"]),
                 Forecast = Convert.ToString(reader["forecast"]),
                 HighTemp = Convert.ToInt32(reader["high"]),
-                LowTemp = Convert.ToInt32(reader["low"])
+                LowTemp = Convert.ToInt32(reader["low"]),
+                TempUnits = this.TempUnits
             };
         }
     }

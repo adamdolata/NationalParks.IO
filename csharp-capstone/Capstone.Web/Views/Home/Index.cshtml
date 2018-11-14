@@ -7,8 +7,9 @@
 @foreach (var park in Model)
 {
     <h3><a asp-controller="Home" asp-action="ParkDetails" asp-route-parkCode="@(park.ParkCode)">@park.ParkName</a></h3>
+    <p><img src="~/img/parks/@(park.ParkCode).jpg" /></p>
     <p>@park.State</p>
     <p>@park.Description</p>
-    <p><img src="~/img/parks/@(park.ParkCode).jpg" /></p>
+    <hr />
 }
 
