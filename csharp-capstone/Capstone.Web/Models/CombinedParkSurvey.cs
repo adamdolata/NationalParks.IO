@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.AspNetCore.Mvc.Rendering;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -7,8 +8,9 @@ namespace Capstone.Web.Models
 {
     public class CombinedParkSurvey
     {
-        private IList<ParkDataModel> parks;
-        private IList<SurveyResultModel> surveyResults;
+        public IList<ParkDataModel> parks;
+        public IList<SurveyResultModel> surveyResults;
+        public SurveyResultModel response;
 
         public CombinedParkSurvey(IList<ParkDataModel> parks, IList<SurveyResultModel> surveyResults)
         {
@@ -24,5 +26,6 @@ namespace Capstone.Web.Models
 
             return lst;
         }
+
     }
 }

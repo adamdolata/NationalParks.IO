@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace Capstone.Web.Models.DAL
 {
@@ -15,6 +16,8 @@ namespace Capstone.Web.Models.DAL
             this.connectionString = connectionString;
         }
         
+
+
         public ParkDataModel GetParkFromCode(string parkCode)
         {
             ParkDataModel park = new ParkDataModel();
@@ -45,6 +48,8 @@ namespace Capstone.Web.Models.DAL
 
             return park;
         }
+
+
         public IList<ParkDataModel> GetAllParks()
         {
             IList<ParkDataModel> parks = new List<ParkDataModel>();
@@ -97,5 +102,7 @@ namespace Capstone.Web.Models.DAL
                 NumSpecies = Convert.ToInt32(reader["numberOfAnimalSpecies"])
             };
         }
+
+
     }
 }

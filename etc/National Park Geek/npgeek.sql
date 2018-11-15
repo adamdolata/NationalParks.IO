@@ -12,6 +12,7 @@ GO
 CREATE DATABASE NPGeek;
 GO
 
+
 -- Switch to the NPGeek Database
 USE NPGeek
 GO
@@ -64,6 +65,8 @@ CREATE TABLE survey_result
 	constraint fk_survey_result_park foreign key (parkCode) references park (parkCode)
 );
 
+
+
 INSERT park VALUES ('CVNP', 'Cuyahoga Valley National Park', 'Ohio', 32832, 696, 125, 0, 'Woodland', 2000, 2189849, 'Of all the paths you take in life, make sure a few of them are dirt.', 'John Muir', 'Though a short distance from the urban areas of Cleveland and Akron, Cuyahoga Valley National Park seems worlds away. The park is a refuge for native plants and wildlife, and provides routes of discovery for visitors. The winding Cuyahoga River gives way to deep forests, rolling hills, and open farmlands. Walk or ride the Towpath Trail to follow the historic route of the Ohio & Erie Canal', 0, 390)
 INSERT park VALUES ('ENP', 'Everglades National Park', 'Florida', 1508538, 0, 35, 0, 'Tropical', 1934, 1110901, 'There are no other Everglades in the world. They are, they have always been, one of the unique regions of the earth; remote, never wholly known. Nothing anywhere else is like them.', 'Marjory Stoneman Douglas', 'The Florida Everglades, located in southern Florida, is one of the largest wetlands in the world. Several hundred years ago, this wetlands was a major part of a 5,184,000 acre watershed that covered almost a third of the entire state of Florida. The Everglades consist of a shallow sheet of fresh water that rolls slowly over the lowlands and through billions of blades of sawgrass. As water moves through the Everglades, it causes the sawgrass to ripple like green waves; this is why the Everglades received the nickname "River of Grass."', 8, 760)
 INSERT park VALUES ('GCNP', 'Grand Canyon National Park', 'Arizona', 1217262, 8000, 115, 120, 'Desert', 1919, 4756771, 'It is the one great wonders. . . every American should see.', 'Theodore Roosevelt', 'If there is any place on Earth that puts into perspective the grandiosity of Mother Nature, it is the Grand Canyon. The natural wonder, located in northern Arizona, is a window into the regio''s geological and Native American past. As one of the country''s first national parks, the Grand Canyon has long been considered a U.S. treasure, and continues to inspire scientific study and puzzlement.', 8, 450)
@@ -75,6 +78,17 @@ INSERT park VALUES ('RMNP', 'Rocky Mountain National Park', 'Colorado', 265761, 
 INSERT park VALUES ('YNP', 'Yellowstone National Park', 'Wyoming', 2219791, 8000, 900, 1900, 'Temperate', 1872, 3394326, 'Yellowstone Park is no more representative of America than is Disneyland.', 'John Steinbeck', 'Yellowstone National Park is a protected area showcasing significant geological phenomena and processes. It is also a unique manifestation of geothermal forces, natural beauty, and wild ecosystems where rare and endangered species thrive. As the site of one of the few remaining intact large ecosystems in the northern temperate zone of earth, Yellowstone’s ecological communities provide unparalleled opportunities for conservation, study, and enjoyment of large-scale wildland ecosystem processes.', 15, 390)
 INSERT park VALUES ('YNP2', 'Yosemite National Park', 'California', 747956, 5000, 800, 1720, 'Forest', 1890, 3882642, 'Yosemite Valley, to me, is always a sunrise, a glitter of green and golden wonder in a vast edifice of stone and space.', 'Ansel Adams', 'Yosemite National Park vividly illustrates the effects of glacial erosion of granitic bedrock, creating geologic features that are unique in the world. Repeated glaciations over millions of years have resulted in a concentration of distinctive landscape features, including soaring cliffs, domes, and free-falling waterfalls. There is exceptional glaciated topography, including the spectacular Yosemite Valley, a 914-meter (1/2 mile) deep, glacier-carved cleft with massive sheer granite walls. These geologic features provide a scenic backdrop for mountain meadows and giant sequoia groves, resulting in a diverse landscape of exceptional natural and scenic beauty.', 15, 420)
 
+
+INSERT INTO survey_result VALUES('CVNP', 'a@b.com','Ohio','APPLE');
+INSERT INTO survey_result VALUES('CVNP', 'a@b.com','Pennsylvania','PEAR');
+INSERT INTO survey_result VALUES('GNP', 'a@b.com','Ohio','ORANGE');
+INSERT INTO survey_result VALUES('MRNP', 'a@b.com','Kentucky','APPLE');
+INSERT INTO survey_result VALUES('MRNP', 'a@b.com','Washington','ORANGE');
+INSERT INTO survey_result VALUES('MRNP', 'a@b.com','Washington','ORANGE');
+INSERT INTO survey_result VALUES('GSMNP', 'a@b.com','Washington','ORANGE');
+INSERT INTO survey_result VALUES('GSMNP', 'a@b.com','Ohio','APPLE');
+INSERT INTO survey_result VALUES('GSNMP', 'a@b.com','Ohio','ORANGE');
+INSERT INTO survey_result VALUES('CVNP', 'a@b.com','Ohio','APPLE');
 
 
 INSERT INTO weather VALUES ('GNP',1,27,40,'snow');

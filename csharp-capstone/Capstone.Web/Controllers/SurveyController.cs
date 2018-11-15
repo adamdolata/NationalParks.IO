@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Capstone.Web.Models;
 using Capstone.Web.Models.DAL;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace Capstone.Web.Controllers
 {
@@ -21,11 +22,24 @@ namespace Capstone.Web.Controllers
 
         public IActionResult Index()
         {
+            
             var parks = parkDAL.GetAllParks();
             var surveyResults = surveyDAL.GetAllResponses();
             var parkSurveys = (new CombinedParkSurvey(parks, surveyResults));
 
             return View(parkSurveys);
         }
+        
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult SaveSurveyResponse(SurveyResultModel response)
+        {
+            surveyDAL.NewResponse(response);
+
+            return RedirectToAction("Index");
+        }
+
+
+
     }
 }

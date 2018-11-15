@@ -1,0 +1,19 @@
+﻿@model SurveyResultModel
+
+
+
+<form method="post" asp-controller="Survey" asp-action="SaveSurveyResponse">
+    <label asp-for="ParkCode"></label>
+    @Html.DropDownList("ParkCode", Model.ParksSelectList, "Pick a Park")
+    <br />
+    <label asp-for="State"></label>
+    @Html.DropDownList("States", SurveyResultModel.States, "Pick a State")
+    <br />
+    <label asp-for="ActivityLevel"></label>
+    @Html.DropDownList("ActivityLevels", SurveyResultModel.ActivityLevels, "Pick an Activity Level")
+    <br />
+    <label asp-for="Email"></label>
+    <input asp-for="Email" />
+    <br />
+    <input type="submit" name="submit" value="submit" />
+</form>
