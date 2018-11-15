@@ -10,5 +10,6 @@ namespace Capstone.Web.Models
     {
         IList<ParkDataModel> GetAllParks();
         ParkDataModel GetParkFromCode(string parkCode);
+        IEnumerable<SelectListItem> GetParksSelectList();
     }
 }

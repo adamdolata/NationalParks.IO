@@ -51,49 +51,10 @@ namespace Capstone.Web.Models.DAL
                 Email = Convert.ToString(reader["emailAddress"]),
                 State = Convert.ToString(reader["state"]),
                 ActivityLevel = Convert.ToString(reader["activityLevel"]),
-                ParksSelectList = SetParksSelectList()
             };
         }
 
-
-        public IEnumerable<SelectListItem> SetParksSelectList()
-        {
-            List<SelectListItem> parksSelectList = new List<SelectListItem>();
-            string query = "SELECT * FROM PARK";
-
-            try
-            {
-                using (SqlConnection conn = new SqlConnection(connectionString))
-                {
-                    conn.Open();
-
-                    SqlCommand cmd = new SqlCommand(query, conn);
-                    SqlDataReader reader = cmd.ExecuteReader();
-
-                    while (reader.Read())
-                    {
-                        parksSelectList.Add
-                            (
-                                new SelectListItem()
-                                {
-                                    Text = Convert.ToString(reader["parkName"]),
-                                    Value = Convert.ToString(reader["parkCode"])
-                                }
-                            );
-                    }
-                }
-
-            }
-            catch (SqlException ex)
-            {
-                Console.WriteLine("Unable to get all parks");
-                throw;
-            }
-
-            return parksSelectList;
-        }
-
-        public void NewResponse(SurveyResultModel surveyResponse)
+        public void SaveResponse(SurveyResultModel surveyResponse)
         {
             try
             {

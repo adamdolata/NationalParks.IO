@@ -1,16 +1,18 @@
-﻿@model SurveyResultModel
+﻿@model SaveSurveyResponseModel
 
-
+<hr />
+<h3>Review the parks!</h3>
+<p>Did you enjoy your time at the parks? Tell us about your visit.</p>
 
 <form method="post" asp-controller="Survey" asp-action="SaveSurveyResponse">
     <label asp-for="ParkCode"></label>
     @Html.DropDownList("ParkCode", Model.ParksSelectList, "Pick a Park")
     <br />
     <label asp-for="State"></label>
-    @Html.DropDownList("States", SurveyResultModel.States, "Pick a State")
+    @Html.DropDownList("State", Model.States, "Pick a State")
     <br />
     <label asp-for="ActivityLevel"></label>
-    @Html.DropDownList("ActivityLevels", SurveyResultModel.ActivityLevels, "Pick an Activity Level")
+    @Html.DropDownList("ActivityLevel", Model.ActivityLevels, "Pick an Activity Level")
     <br />
     <label asp-for="Email"></label>
     <input asp-for="Email" />

@@ -9,8 +9,8 @@ namespace Capstone.Web.Models.DAL
     public interface ISurveyDAL
     {
         IList<SurveyResultModel> GetAllResponses();
-        IEnumerable<SelectListItem> SetParksSelectList();
 
-        void NewResponse(SurveyResultModel surveyResponse);
+
+        void SaveResponse(SurveyResultModel surveyResponse);
     }
 }

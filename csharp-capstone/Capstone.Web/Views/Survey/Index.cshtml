@@ -16,19 +16,26 @@
 @foreach (var park in sortedParks)
 {
     var count = 0;
+    var responses = String.Empty;
     foreach (var results in surveyResults)
     {
         if (results.ParkCode == park.ParkCode)
         {
             count++;
-
         }
     }
     if (count > 0)
     {
-        <h3>@park.ParkName</h3>
-        <p>@count</p>
+        <h3>@park.ParkName (@count reviews)</h3>
+        foreach (var results in surveyResults)
+        {
+            if (results.ParkCode == park.ParkCode)
+            {
+                <p>While I visited I was @results.ActivityLevel. I am from @results.State.</p>
+            }
+        }
+
     }
 }
 
-@Html.Partial("_SurveyForm", Model.surveyResults[0])
+@Html.Partial("_SurveyForm", new SaveSurveyResponseModel(Model.parksSelectList))

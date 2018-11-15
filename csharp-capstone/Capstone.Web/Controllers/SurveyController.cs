@@ -22,11 +22,10 @@ namespace Capstone.Web.Controllers
 
         public IActionResult Index()
         {
-            
             var parks = parkDAL.GetAllParks();
             var surveyResults = surveyDAL.GetAllResponses();
-            var parkSurveys = (new CombinedParkSurvey(parks, surveyResults));
-
+            var parksList = parkDAL.GetParksSelectList();
+            var parkSurveys = new CombinedParkSurvey(parks, surveyResults, parksList);
             return View(parkSurveys);
         }
         
@@ -34,7 +33,7 @@ namespace Capstone.Web.Controllers
         [ValidateAntiForgeryToken]
         public IActionResult SaveSurveyResponse(SurveyResultModel response)
         {
-            surveyDAL.NewResponse(response);
+            surveyDAL.SaveResponse(response);
 
             return RedirectToAction("Index");
         }

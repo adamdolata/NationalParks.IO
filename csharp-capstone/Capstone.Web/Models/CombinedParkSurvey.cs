@@ -10,12 +10,14 @@ namespace Capstone.Web.Models
     {
         public IList<ParkDataModel> parks;
         public IList<SurveyResultModel> surveyResults;
+        public IEnumerable<SelectListItem> parksSelectList;
         public SurveyResultModel response;
 
-        public CombinedParkSurvey(IList<ParkDataModel> parks, IList<SurveyResultModel> surveyResults)
+        public CombinedParkSurvey(IList<ParkDataModel> parks, IList<SurveyResultModel> surveyResults, IEnumerable<SelectListItem> parksSelectList)
         {
             this.surveyResults = surveyResults;
             this.parks = parks;
+            this.parksSelectList = parksSelectList;
         }
 
         public Dictionary<string, Object> GetParkSurvey()
@@ -26,6 +28,5 @@ namespace Capstone.Web.Models
 
             return lst;
         }
-
     }
 }

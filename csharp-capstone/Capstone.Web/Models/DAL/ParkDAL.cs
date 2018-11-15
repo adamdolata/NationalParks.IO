@@ -15,8 +15,44 @@ namespace Capstone.Web.Models.DAL
         {
             this.connectionString = connectionString;
         }
-        
 
+
+        public IEnumerable<SelectListItem> GetParksSelectList()
+        {
+            List<SelectListItem> parksSelectList = new List<SelectListItem>();
+            string query = "SELECT * FROM PARK";
+
+            try
+            {
+                using (SqlConnection conn = new SqlConnection(connectionString))
+                {
+                    conn.Open();
+
+                    SqlCommand cmd = new SqlCommand(query, conn);
+                    SqlDataReader reader = cmd.ExecuteReader();
+
+                    while (reader.Read())
+                    {
+                        parksSelectList.Add
+                            (
+                                new SelectListItem()
+                                {
+                                    Text = Convert.ToString(reader["parkName"]),
+                                    Value = Convert.ToString(reader["parkCode"])
+                                }
+                            );
+                    }
+                }
+
+            }
+            catch (SqlException ex)
+            {
+                Console.WriteLine("Unable to get all parks");
+                throw;
+            }
+
+            return parksSelectList;
+        }
 
         public ParkDataModel GetParkFromCode(string parkCode)
         {
