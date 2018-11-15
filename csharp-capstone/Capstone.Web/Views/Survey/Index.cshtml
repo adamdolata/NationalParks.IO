@@ -1,0 +1,10 @@
+﻿@model CombinedParkSurvey
+@{
+    var parkSurveys = Model.GetParkSurvey();
+    IList<ParkDataModel> park = (IList<ParkDataModel>)(parkSurveys["parks"]);
+    IList<SurveyResultModel> weather = (List<SurveyResultModel>)(parkSurveys["parkSurveys"]);
+    ViewData["Title"] = "Surveys";
+}
+
+<h2>Surveys</h2>
+

@@ -7,5 +7,8 @@ namespace Capstone.Web.Models.DAL
 {
     public interface ISurveyDAL
     {
+        IList<SurveyResultModel> GetAllResponses();
+
+        void NewResponse(SurveyResultModel surveyResponse);
     }
 }
