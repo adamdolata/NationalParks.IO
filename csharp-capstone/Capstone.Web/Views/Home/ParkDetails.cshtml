@@ -7,18 +7,18 @@
     ViewData["Title"] = "ParkDetails";
 }
 
-<h2>@park.ParkName</h2>
+<h2><strong>@park.ParkName</strong></h2>
 <p><img src="~/img/parks/@(park.ParkCode).jpg" /></p>
-<p>Founded in @park.YearFounded and located in @park.State, at an elevation of @park.Elevation.ToString("#,#") ft.</p>
-<p>Features @park.CampsiteNumber campsites and @park.TrailLength miles of trails. Visted by @park.AnnualVisitors.ToString("#,#") visitors every year.</p>
-<p>Entry fee: @park.EntryFee.ToString("C")</p>
-<p>@park.Description</p>
+<p><strong>Year Founded: </strong>Founded in @park.YearFounded and located in @park.State, at an elevation of @park.Elevation.ToString("#,#") ft.</p>
+<p><strong>Features: </strong>Features @park.CampsiteNumber campsites and @park.TrailLength miles of trails. Visted by @park.AnnualVisitors.ToString("#,#") visitors every year.</p>
+<p><strong>Entry fee: </strong>@park.EntryFee.ToString("C")</p>
+<p><strong>Description: </strong>@park.Description</p>
 <blockquote>
     <p>@park.Quote</p>
     <footer>@park.QuoteSource</footer>
 </blockquote>
 
-<h3>Five Day Forcast</h3>
+<h3><strong>Five Day Forcast</strong></h3>
 <div class="row">
     @foreach (var day in weather)
     {
